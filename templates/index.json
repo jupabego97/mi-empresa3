@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "hero": {
+      "type": "main-hero",
+      "settings": {
+        "title": "AL SON DE LA TECNOLOGIA.",
+        "subtitle": "Computadores, tablets, parlantes y accesorios con garantia comprobada.\nCompra facil y segura desde cualquier lugar de Colombia.",
+        "cta_label": "VER OFERTAS FLASH",
+        "cta_url": "shopify://collections/all"
+      }
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "CATALOGO DESTACADO",
+        "title": "NUESTROS PRODUCTOS",
+        "filter_tags": "computadores, tablets, parlantes, accesorios",
+        "products_to_show": 8,
+        "show_view_all": true
+      }
+    },
+    "benefits": {
+      "type": "benefits",
+      "settings": {
+        "benefit_1_title": "ENVIOS A TODO COLOMBIA",
+        "benefit_1_desc": "Despachos rapidos en todo el pais",
+        "benefit_2_title": "GARANTIA DIRECTA",
+        "benefit_2_desc": "Respaldo total en cada producto",
+        "benefit_3_title": "DEVOLUCIONES FACILES",
+        "benefit_3_desc": "Sin complicaciones en 30 dias",
+        "benefit_4_title": "SOPORTE 24/7",
+        "benefit_4_desc": "Atencion por WhatsApp y correo"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured-products",
+    "benefits"
+  ]
+}

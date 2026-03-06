@@ -1,0 +1,71 @@
+{% comment %}Floating WhatsApp Button — NANO v3.0{% endcomment %}
+
+{%- assign wa_number = settings.whatsapp_number | default: '573001234567' -%}
+{%- assign wa_message = settings.whatsapp_message | default: 'Hola! Me interesa un producto de NANO' -%}
+
+<a
+  href="https://wa.me/{{ wa_number }}?text={{ wa_message | url_encode }}"
+  class="whatsapp-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Contáctanos por WhatsApp"
+  title="Escríbenos por WhatsApp"
+>
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
+    <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16.004c0 3.5 1.132 6.742 3.054 9.378L1.058 31.14l5.968-1.97A15.9 15.9 0 0016.004 32C24.826 32 32 24.826 32 16.004 32 7.176 24.826 0 16.004 0zm9.302 22.594c-.39 1.098-2.282 2.1-3.15 2.154-.794.048-1.536.376-5.176-1.078-4.394-1.754-7.186-6.238-7.404-6.526-.216-.288-1.77-2.354-1.77-4.492s1.12-3.186 1.518-3.622c.398-.436.868-.546 1.158-.546.29 0 .578.004.832.016.268.012.626-.1.978.746.362.868 1.232 3.006 1.34 3.224.108.218.18.472.036.76-.144.288-.216.468-.432.722-.216.252-.456.564-.652.756-.216.216-.44.45-.19.884.252.432 1.12 1.848 2.404 2.994 1.652 1.476 3.044 1.934 3.476 2.152.432.218.684.182.936-.108.252-.29 1.08-1.26 1.368-1.694.288-.432.576-.362.972-.218.396.144 2.526 1.19 2.958 1.408.432.218.72.326.828.506.108.18.108 1.044-.282 2.142z"/>
+  </svg>
+  <span class="whatsapp-float__pulse"></span>
+</a>
+
+<style>
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 250;
+  width: 56px;
+  height: 56px;
+  background-color: #25D366;
+  color: #fff;
+  border: 2px solid #1EBE5D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.2);
+  color: #fff;
+}
+
+.whatsapp-float:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.15);
+}
+
+.whatsapp-float__pulse {
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #25D366;
+  animation: wa-pulse 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes wa-pulse {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-float {
+    bottom: 16px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+  }
+}
+</style>

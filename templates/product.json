@@ -1,0 +1,38 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_buy_now": true
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "También te puede interesar",
+        "products_to_show": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "recommendations"
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

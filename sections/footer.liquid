@@ -1,0 +1,104 @@
+{% comment %}Footer - NANO Front 2026{% endcomment %}
+
+<footer class="site-footer" role="contentinfo" data-section-id="{{ section.id }}">
+  <div class="site-footer__grid">
+    <div>
+      {%- if settings.logo != blank -%}
+        <img src="{{ settings.logo | image_url: width: 220 }}" alt="{{ shop.name }}" class="site-footer__logo" loading="lazy">
+      {%- endif -%}
+      <p class="site-footer__lead">
+        Tecnologia de calidad al mejor precio.
+        <br>Compra facil y segura con envio nacional.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="site-footer__title">CONTACTO RAPIDO</h4>
+      <ul class="site-footer__list">
+        <li>{{ section.settings.contact_phone | default: "+57 323 6826910" }}</li>
+        <li>{{ section.settings.contact_email | default: "nanotronicsalsondelatecnologia@gmail.com" }}</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="site-footer__title">HORARIOS DE ATENCION</h4>
+      <ul class="site-footer__list">
+        <li>{{ section.settings.schedule_1 | default: "Lunes - Sabado: 10:00 AM - 8:00 PM" }}</li>
+        <li>{{ section.settings.schedule_2 | default: "Domingos: 10:00 AM - 7:00 PM" }}</li>
+        <li>{{ section.settings.schedule_3 | default: "Respuesta promedio: 24h" }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.</p>
+    <nav class="site-footer__links" aria-label="Links del pie de pagina">
+      {%- if section.settings.link_1_label != blank -%}
+        <a href="{{ section.settings.link_1_url | default: '/policies/privacy-policy' }}" class="site-footer__link">{{ section.settings.link_1_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.link_2_label != blank -%}
+        <a href="{{ section.settings.link_2_url | default: '/policies/terms-of-service' }}" class="site-footer__link">{{ section.settings.link_2_label }}</a>
+      {%- endif -%}
+    </nav>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Telefono",
+      "default": "+57 323 6826910"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Email",
+      "default": "nanotronicsalsondelatecnologia@gmail.com"
+    },
+    {
+      "type": "text",
+      "id": "schedule_1",
+      "label": "Horario 1",
+      "default": "Lunes - Sabado: 10:00 AM - 8:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "schedule_2",
+      "label": "Horario 2",
+      "default": "Domingos: 10:00 AM - 7:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "schedule_3",
+      "label": "Horario 3",
+      "default": "Respuesta promedio: 24h"
+    },
+    {
+      "type": "text",
+      "id": "link_1_label",
+      "label": "Link 1 texto",
+      "default": "PRIVACIDAD"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_label",
+      "label": "Link 2 texto",
+      "default": "TERMINOS"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "Link 2 URL"
+    }
+  ]
+}
+{% endschema %}
