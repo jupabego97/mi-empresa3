@@ -3,33 +3,33 @@
     "hero": {
       "type": "main-hero",
       "settings": {
-        "title": "AL SON DE LA TECNOLOGIA.",
-        "subtitle": "Computadores, tablets, parlantes y accesorios con garantia comprobada.\nCompra facil y segura desde cualquier lugar de Colombia.",
-        "cta_label": "VER OFERTAS FLASH",
+        "title": "Tecnología de calidad al mejor precio",
+        "subtitle": "Computadores, tablets, parlantes y accesorios con garantía comprobada.\nCompra fácil y segura desde cualquier lugar de Colombia.",
+        "cta_label": "Ver productos",
         "cta_url": "shopify://collections/all"
       }
     },
     "featured-products": {
       "type": "featured-products",
       "settings": {
-        "eyebrow": "CATALOGO DESTACADO",
-        "title": "NUESTROS PRODUCTOS",
+        "eyebrow": "Catálogo",
+        "title": "Nuestros productos",
         "filter_tags": "computadores, tablets, parlantes, accesorios",
-        "products_to_show": 8,
+        "products_to_show": 6,
         "show_view_all": true
       }
     },
     "benefits": {
       "type": "benefits",
       "settings": {
-        "benefit_1_title": "ENVIOS A TODO COLOMBIA",
-        "benefit_1_desc": "Despachos rapidos en todo el pais",
-        "benefit_2_title": "GARANTIA DIRECTA",
+        "benefit_1_title": "Envíos a todo Colombia",
+        "benefit_1_desc": "Despachos rápidos en todo el país",
+        "benefit_2_title": "Garantía directa",
         "benefit_2_desc": "Respaldo total en cada producto",
-        "benefit_3_title": "DEVOLUCIONES FACILES",
-        "benefit_3_desc": "Sin complicaciones en 30 dias",
-        "benefit_4_title": "SOPORTE 24/7",
-        "benefit_4_desc": "Atencion por WhatsApp y correo"
+        "benefit_3_title": "Devoluciones fáciles",
+        "benefit_3_desc": "Sin complicaciones en 30 días",
+        "benefit_4_title": "Soporte 24/7",
+        "benefit_4_desc": "Atención por WhatsApp y correo"
       }
     }
   },

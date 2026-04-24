@@ -1,16 +1,15 @@
-{% comment %}Cart Page — Brutalista NANO v3.0{% endcomment %}
+{% comment %}Cart Page — Clean NANO v4.0{% endcomment %}
 
 <div class="cart-page template-cart" data-section-id="{{ section.id }}">
   <h1 class="cart-page__title">
-    TERMINAL DE COMPRA
+    Tu carrito
     {%- if cart.item_count > 0 -%}
-      <span style="font-family:var(--font-mono);font-size:14px;color:var(--color-gray);margin-left:12px;">[{{ cart.item_count }} items]</span>
+      <span style="font-size:16px;color:var(--color-gray);font-weight:400;margin-left:8px;">({{ cart.item_count }} {% if cart.item_count == 1 %}producto{% else %}productos{% endif %})</span>
     {%- endif -%}
   </h1>
 
   {%- if cart.item_count > 0 -%}
     <div class="cart-page__layout">
-      <!-- Items -->
       <div>
         <form action="{{ routes.cart_url }}" method="post" id="cart-form">
           {%- for item in cart.items -%}
@@ -26,7 +25,7 @@
                     height="120"
                   >
                 {%- else -%}
-                  <div class="cart-item__image" style="display:flex;align-items:center;justify-content:center;color:var(--color-accent);opacity:0.3;">
+                  <div class="cart-item__image" style="display:flex;align-items:center;justify-content:center;color:var(--color-gray);opacity:0.3;">
                     <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/></svg>
                   </div>
                 {%- endif -%}
@@ -34,7 +33,7 @@
 
               <div class="cart-item__info">
                 <p class="cart-item__title">
-                  <a href="{{ item.url }}" style="color:inherit;">{{ item.product.title | upcase }}</a>
+                  <a href="{{ item.url }}" style="color:inherit;">{{ item.product.title }}</a>
                 </p>
                 {%- unless item.product.has_only_default_variant -%}
                   <p class="cart-item__variant">{{ item.variant.title }}</p>
@@ -51,7 +50,7 @@
                     data-line="{{ forloop.index }}"
                     class="cart-item__qty-val"
                     aria-label="Cantidad"
-                    style="width:36px;height:22px;text-align:center;border:1px solid var(--color-accent);border-left:none;border-right:none;font-family:var(--font-mono);font-size:13px;font-weight:700;background:transparent;"
+                    style="width:36px;height:26px;text-align:center;border:1px solid var(--color-border);border-left:none;border-right:none;font-size:13px;font-weight:600;background:transparent;"
                   >
                   <button type="button" class="cart-item__qty-btn" data-action="increase" aria-label="Aumentar">&#43;</button>
                 </div>
@@ -59,53 +58,52 @@
 
               <div class="cart-item__actions">
                 <button type="button" class="cart-item__remove" data-action="remove" aria-label="Eliminar">&times;</button>
-                <span style="font-family:var(--font-mono);font-size:14px;font-weight:700;color:var(--color-accent);">{{ item.final_line_price | money }}</span>
+                <span style="font-family:var(--font-heading);font-size:15px;font-weight:700;color:var(--color-text);">{{ item.final_line_price | money }}</span>
               </div>
             </div>
           {%- endfor -%}
         </form>
       </div>
 
-      <!-- Summary sidebar -->
       <div class="cart-page__summary">
-        <h2 class="cart-page__summary-title">RESUMEN DEL PEDIDO</h2>
+        <h2 class="cart-page__summary-title">Resumen del pedido</h2>
 
         <div class="cart-page__summary-row">
-          <span>SUBTOTAL</span>
+          <span>Subtotal</span>
           <span>{{ cart.total_price | money }}</span>
         </div>
-        <div class="cart-page__summary-row" style="color:var(--color-gray);font-size:11px;">
-          <span>ENVÍO</span>
+        <div class="cart-page__summary-row" style="color:var(--color-gray);font-size:13px;">
+          <span>Envío</span>
           <span>Calculado en checkout</span>
         </div>
 
         {%- if cart.total_discount > 0 -%}
           <div class="cart-page__summary-row" style="color:#16A34A;">
-            <span>DESCUENTO</span>
+            <span>Descuento</span>
             <span>-{{ cart.total_discount | money }}</span>
           </div>
         {%- endif -%}
 
         <div class="cart-page__summary-total">
-          <span>TOTAL</span>
+          <span>Total</span>
           <span>{{ cart.total_price | money }}</span>
         </div>
 
         <button type="submit" name="checkout" form="cart-form" class="cart-page__checkout-btn">
-          PROCESAR PAGO
+          Procesar pago
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
 
-        <a href="/collections/all" style="display:block;text-align:center;font-family:var(--font-mono);font-size:12px;color:var(--color-accent);margin-top:12px;text-decoration:underline;">
-          &larr; SEGUIR COMPRANDO
+        <a href="/collections/all" style="display:block;text-align:center;font-size:13px;color:var(--color-accent);margin-top:14px;">
+          &larr; Seguir comprando
         </a>
 
-        <p style="font-family:var(--font-mono);font-size:10px;text-align:center;color:var(--color-gray);margin-top:16px;text-transform:uppercase;">
-          &#128274; PAGO SEGURO CIFRADO POR SHOPIFY
+        <p style="font-size:11px;text-align:center;color:var(--color-gray);margin-top:16px;">
+          &#128274; Pago seguro cifrado por Shopify
         </p>
 
         {%- if shop.enabled_payment_types.size > 0 -%}
-          <div style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:12px;opacity:0.6;">
+          <div style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:12px;opacity:0.5;">
             {%- for type in shop.enabled_payment_types -%}
               {{ type | payment_type_svg_tag: class: 'payment-icon' }}
             {%- endfor -%}
@@ -116,11 +114,11 @@
 
   {%- else -%}
     <div style="text-align:center;padding:64px 0;">
-      <div style="font-size:48px;opacity:0.4;color:var(--color-accent);margin-bottom:16px;">&#9783;</div>
-      <p style="font-family:var(--font-mono);font-size:16px;color:var(--color-accent);font-weight:700;margin-bottom:8px;">&gt; CARRITO_VACÍO</p>
-      <p style="font-family:var(--font-mono);font-size:12px;color:var(--color-gray);margin-bottom:32px;">Añade productos para continuar.</p>
+      <div style="font-size:48px;opacity:0.3;margin-bottom:16px;">🛒</div>
+      <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Tu carrito está vacío</p>
+      <p style="font-size:14px;color:var(--color-gray);margin-bottom:32px;">Añade productos para continuar.</p>
       <a href="/collections/all" class="hero__cta">
-        EXPLORAR INVENTARIO
+        Explorar catálogo
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>

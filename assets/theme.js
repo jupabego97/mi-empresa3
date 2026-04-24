@@ -23,31 +23,31 @@ const CartManager = {
     overlay.className = 'cart-overlay';
     overlay.setAttribute('aria-hidden', 'true');
     overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-label', 'Terminal de Compra');
+    overlay.setAttribute('aria-label', 'Tu carrito');
     overlay.innerHTML = `
       <div class="cart-overlay__backdrop"></div>
       <div class="cart-panel">
         <div class="cart-panel__header">
-          <span class="cart-panel__title">Terminal de Compra</span>
+          <span class="cart-panel__title">Tu carrito</span>
           <button class="cart-panel__close" aria-label="Cerrar carrito">&times;</button>
         </div>
         <div class="cart-panel__body" id="cart-panel-body">
           <div class="cart-panel__empty">
-            <div class="cart-panel__empty-icon">&#9783;</div>
-            <p class="cart-panel__empty-text">&gt; CARRITO_VACÍO</p>
+            <div class="cart-panel__empty-icon">🛒</div>
+            <p class="cart-panel__empty-text">Tu carrito está vacío</p>
             <p class="cart-panel__empty-hint">Añade productos para continuar.</p>
           </div>
         </div>
         <div class="cart-panel__footer" id="cart-panel-footer" style="display:none">
           <div class="cart-panel__subtotal">
-            <span class="cart-panel__subtotal-label">SUBTOTAL:</span>
+            <span class="cart-panel__subtotal-label">Subtotal</span>
             <span class="cart-panel__subtotal-value" id="cart-panel-total">$0</span>
           </div>
           <a href="/checkout" class="cart-panel__checkout" id="cart-panel-checkout">
-            PROCESAR EN SHOPIFY
+            Ir al checkout
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <p class="cart-panel__secure">&#128274; PAGO SEGURO CIFRADO POR SHOPIFY</p>
+          <p class="cart-panel__secure">🔒 Pago seguro cifrado por Shopify</p>
         </div>
       </div>
     `;
@@ -117,8 +117,8 @@ const CartManager = {
     if (!cart.items || cart.items.length === 0) {
       body.innerHTML = `
         <div class="cart-panel__empty">
-          <div class="cart-panel__empty-icon">&#9783;</div>
-          <p class="cart-panel__empty-text">&gt; CARRITO_VACÍO</p>
+          <div class="cart-panel__empty-icon">🛒</div>
+          <p class="cart-panel__empty-text">Tu carrito está vacío</p>
           <p class="cart-panel__empty-hint">Añade productos para continuar.</p>
         </div>`;
       if (footer) footer.style.display = 'none';

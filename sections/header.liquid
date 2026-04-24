@@ -1,9 +1,9 @@
-{% comment %}Header - NANO Front 2026{% endcomment %}
+{% comment %}Header - NANO Clean v4.0{% endcomment %}
 
 <header class="site-header" role="banner">
   <div class="site-header__left">
     <button class="mobile-menu-btn" aria-label="Abrir menu" aria-controls="mobile-menu" aria-expanded="false">
-      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 6h18M3 12h18M3 18h18"/>
       </svg>
     </button>
@@ -25,10 +25,10 @@
 
   <div class="site-header__actions">
     <button class="cart-toggle-btn" aria-label="Abrir carrito" aria-haspopup="dialog">
-      <span>CARRITO [<span data-cart-count>{{ cart.item_count }}</span>]</span>
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
       </svg>
+      <span>Carrito (<span data-cart-count>{{ cart.item_count }}</span>)</span>
     </button>
   </div>
 </header>
@@ -37,11 +37,11 @@
 <nav id="mobile-menu" class="mobile-menu" aria-label="Menu movil" aria-hidden="true">
   <button class="mobile-menu__close" aria-label="Cerrar menu">&times;</button>
   <div class="mobile-menu__nav">
-    <a href="/" class="mobile-menu__link">INICIO</a>
-    <a href="/collections/all" class="mobile-menu__link">CATALOGO</a>
-    <a href="/cart" class="mobile-menu__link">CARRITO ({{ cart.item_count }})</a>
+    <a href="/" class="mobile-menu__link">Inicio</a>
+    <a href="/collections/all" class="mobile-menu__link">Catálogo</a>
+    <a href="/cart" class="mobile-menu__link">Carrito ({{ cart.item_count }})</a>
     {%- if section.settings.whatsapp_number != blank -%}
-      <a href="https://wa.me/{{ section.settings.whatsapp_number }}" class="mobile-menu__link" target="_blank" rel="noopener">CONTACTO</a>
+      <a href="https://wa.me/{{ section.settings.whatsapp_number }}" class="mobile-menu__link" target="_blank" rel="noopener">Contacto</a>
     {%- endif -%}
   </div>
 </nav>

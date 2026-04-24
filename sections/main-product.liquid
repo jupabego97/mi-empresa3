@@ -1,23 +1,21 @@
-{% comment %}Product Page — Brutalista NANO v3.0{% endcomment %}
+{% comment %}Product Page — Clean NANO v4.0{% endcomment %}
 
 {%- assign cv = product.selected_or_first_available_variant -%}
 {%- unless cv -%}{%- assign cv = product.variants.first -%}{%- endunless -%}
 
-<!-- Breadcrumb -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
-  <a href="/">INICIO</a>
+  <a href="/">Inicio</a>
   <span>/</span>
   {%- if product.collections.first -%}
-    <a href="{{ product.collections.first.url }}">{{ product.collections.first.title | upcase }}</a>
+    <a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
     <span>/</span>
   {%- endif -%}
-  <span>{{ product.title | upcase | truncate: 40 }}</span>
+  <span>{{ product.title | truncate: 40 }}</span>
 </nav>
 
 <div class="product-page" data-section-id="{{ section.id }}" itemscope itemtype="https://schema.org/Product">
   <div class="product-page__grid">
 
-    <!-- Gallery -->
     <div class="product-gallery">
       <div class="product-gallery__main">
         {%- if product.featured_media -%}
@@ -31,7 +29,7 @@
             itemprop="image"
           >
         {%- else -%}
-          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--color-accent);opacity:0.4;">
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--color-gray);opacity:0.3;">
             <svg width="80" height="80" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24">
               <rect x="3" y="3" width="18" height="18"/><path d="M3 9h18M9 21V9"/>
             </svg>
@@ -59,17 +57,16 @@
       {%- endif -%}
     </div>
 
-    <!-- Product info -->
     <div class="product-info" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
       <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
       <meta itemprop="price" content="{{ cv.price | money_without_currency | remove: ',' }}">
       <link itemprop="availability" href="{% if cv.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}">
 
       {%- if product.vendor != blank -%}
-        <p class="product-info__vendor" itemprop="brand">{{ product.vendor | upcase }}</p>
+        <p class="product-info__vendor" itemprop="brand">{{ product.vendor }}</p>
       {%- endif -%}
 
-      <h1 class="product-info__title" itemprop="name">{{ product.title | upcase }}</h1>
+      <h1 class="product-info__title" itemprop="name">{{ product.title }}</h1>
 
       <p class="product-info__price">
         {{ cv.price | money }}
@@ -84,7 +81,7 @@
         {%- unless product.has_only_default_variant -%}
           {%- for option in product.options_with_values -%}
             <div style="margin-bottom:16px;">
-              <label class="product-form__label">{{ option.name | upcase }}</label>
+              <label class="product-form__label">{{ option.name }}</label>
               <select
                 class="product-form__select"
                 name="options[{{ option.name }}]"
@@ -100,7 +97,7 @@
           {%- endfor -%}
         {%- endunless -%}
 
-        <label class="product-form__label">CANTIDAD</label>
+        <label class="product-form__label">Cantidad</label>
         <div class="product-form__qty" style="margin-bottom:20px;">
           <button type="button" class="product-form__qty-btn product-form__qty-decrease" aria-label="Reducir">&#8722;</button>
           <input type="number" name="quantity" value="1" min="1" class="product-form__qty-input" aria-label="Cantidad">
@@ -114,32 +111,35 @@
           id="add-to-cart-btn"
           {% unless cv.available %}disabled{% endunless %}
         >
-          {%- if cv.available -%}+ AGREGAR AL CARRITO{%- else -%}AGOTADO{%- endif -%}
+          {%- if cv.available -%}Agregar al carrito{%- else -%}Agotado{%- endif -%}
         </button>
 
         {%- if section.settings.show_buy_now and cv.available -%}
           <button
             type="submit"
             name="checkout"
-            style="width:100%;background:transparent;border:var(--border);color:var(--color-accent);font-family:var(--font-mono);font-size:13px;font-weight:700;text-transform:uppercase;padding:12px;cursor:pointer;margin-bottom:16px;transition:var(--transition);"
-            onmouseover="this.style.background='var(--color-accent)';this.style.color='white';"
-            onmouseout="this.style.background='transparent';this.style.color='var(--color-accent)';"
+            class="product-card__btn product-card__btn--secondary"
+            style="width:100%;padding:14px;font-size:15px;margin-bottom:16px;"
           >
-            COMPRAR AHORA
+            Comprar ahora
           </button>
         {%- endif -%}
       {%- endform -%}
 
-      <!-- Stock status -->
-      <p style="font-family:var(--font-mono);font-size:12px;color:{% if cv.available %}var(--color-accent){% else %}var(--color-red){% endif %};margin-bottom:16px;">
-        &gt; {% if cv.available %}EN STOCK — LISTO PARA ENVIAR{% else %}AGOTADO TEMPORALMENTE{% endif %}
+      <p style="font-size:13px;color:{% if cv.available %}var(--color-green, #16A34A){% else %}var(--color-red){% endif %};margin-bottom:16px;font-weight:600;">
+        {% if cv.available %}&#10003; En stock — Listo para enviar{% else %}Agotado temporalmente{% endif %}
       </p>
 
-      <!-- Trust bar -->
-      <div style="border:var(--border);background:var(--color-card-bg);padding:16px;display:flex;flex-direction:column;gap:8px;">
-        <p style="font-family:var(--font-mono);font-size:11px;color:var(--color-text);">&#9899; ENVÍO GRATIS en pedidos +$100.000</p>
-        <p style="font-family:var(--font-mono);font-size:11px;color:var(--color-text);">&#9899; GARANTÍA DIRECTA 6 meses</p>
-        <p style="font-family:var(--font-mono);font-size:11px;color:var(--color-text);">&#9899; DEVOLUCIONES FÁCILES en 30 días</p>
+      <div style="background:var(--color-gray-light, #F3F4F6);border-radius:var(--radius-sm, 8px);padding:16px;display:flex;flex-direction:column;gap:10px;">
+        <p style="font-size:13px;color:var(--color-text);display:flex;align-items:center;gap:8px;">
+          <span style="font-size:16px;">🚚</span> Envío gratis en pedidos +$100.000
+        </p>
+        <p style="font-size:13px;color:var(--color-text);display:flex;align-items:center;gap:8px;">
+          <span style="font-size:16px;">🛡️</span> Garantía directa 6 meses
+        </p>
+        <p style="font-size:13px;color:var(--color-text);display:flex;align-items:center;gap:8px;">
+          <span style="font-size:16px;">↩️</span> Devoluciones fáciles en 30 días
+        </p>
       </div>
 
       {%- if product.description != blank -%}
@@ -155,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const variantIdInput = document.getElementById('variant-id');
   const addBtn = document.getElementById('add-to-cart-btn');
 
-  // Quantity buttons
   const qtyInput = document.querySelector('.product-form__qty-input');
   document.querySelector('.product-form__qty-decrease')?.addEventListener('click', function() {
     if (qtyInput) qtyInput.value = Math.max(1, parseInt(qtyInput.value || 1) - 1);
@@ -164,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (qtyInput) qtyInput.value = parseInt(qtyInput.value || 1) + 1;
   });
 
-  // Variant selector
   const selects = document.querySelectorAll('[data-option-index]');
   function updateVariant() {
     const options = [];
@@ -176,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
       variantIdInput.value = variant.id;
       if (addBtn) {
         addBtn.disabled = !variant.available;
-        addBtn.textContent = variant.available ? '+ AGREGAR AL CARRITO' : 'AGOTADO';
+        addBtn.textContent = variant.available ? 'Agregar al carrito' : 'Agotado';
       }
       const priceEl = document.querySelector('.product-info__price');
       if (priceEl && variant.price) {

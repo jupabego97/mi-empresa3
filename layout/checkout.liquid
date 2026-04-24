@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00C4B4">
+
+  <title>{{ page_title }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  {{ content_for_header }}
+
+  <style>
+    :root {
+      --co-bg: #F7F8FA;
+      --co-bg-alt: #F0F1F3;
+      --co-surface: #FFFFFF;
+      --co-accent: #00C4B4;
+      --co-accent-hv: #00A89A;
+      --co-text: #1F2937;
+      --co-muted: #6B7280;
+      --co-border: #E5E7EB;
+      --co-error: #EF4444;
+      --co-success: #10B981;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif !important;
+      background-color: var(--co-bg) !important;
+      color: var(--co-text) !important;
+      margin: 0;
+    }
+
+    .page__bg,
+    .page-wrap { background-color: var(--co-bg) !important; }
+
+    /* Header */
+    .banner {
+      background: var(--co-surface) !important;
+      border-bottom: 1px solid var(--co-border) !important;
+      padding: 16px 0 !important;
+    }
+
+    .header--logo .header__logo-image {
+      max-height: 44px !important;
+    }
+
+    .header__logo-link { display: flex; align-items: center; gap: 10px; }
+    .header__logo-link::before { content: none; }
+
+    /* Breadcrumb */
+    .breadcrumb { padding: 14px 0 !important; }
+    .breadcrumb__item { font-family: 'DM Sans', sans-serif !important; font-size: 0.75rem !important; letter-spacing: 0.02em !important; }
+    .breadcrumb__item--current .breadcrumb__text { color: var(--co-accent) !important; font-weight: 700 !important; }
+    .breadcrumb__item--complete .breadcrumb__text { color: var(--co-text) !important; }
+    .breadcrumb__chevron-icon { color: var(--co-muted) !important; }
+
+    /* Layout */
+    .main {
+      background: var(--co-surface) !important;
+      border-right: 1px solid var(--co-border) !important;
+    }
+
+    .sidebar {
+      background: var(--co-bg-alt) !important;
+      border-left: 1px solid var(--co-border) !important;
+    }
+
+    .section + .section { border-top: 1px solid var(--co-border) !important; }
+
+    /* Forms */
+    .field__input,
+    .field__input-wrapper .field__input,
+    select.field__input,
+    textarea.field__input {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 0.95rem !important;
+      border: 1px solid var(--co-border) !important;
+      border-radius: 8px !important;
+      background: var(--co-surface) !important;
+      color: var(--co-text) !important;
+      padding: 14px 12px !important;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+      box-shadow: none !important;
+    }
+
+    .field__input:focus,
+    select.field__input:focus {
+      outline: none !important;
+      border-color: var(--co-accent) !important;
+      box-shadow: 0 0 0 3px rgba(0,196,180,0.15) !important;
+    }
+
+    .field__label {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      color: var(--co-muted) !important;
+    }
+
+    .field--error .field__input { border-color: var(--co-error) !important; }
+
+    .radio-wrapper__input:checked + .radio-wrapper__label::before {
+      border-color: var(--co-accent) !important;
+      background: var(--co-accent) !important;
+    }
+
+    .content-box {
+      border: 1px solid var(--co-border) !important;
+      border-radius: 8px !important;
+      box-shadow: none !important;
+    }
+
+    .content-box__row + .content-box__row { border-top: 1px solid var(--co-border) !important; }
+
+    /* Buttons */
+    .btn,
+    .step__footer__continue-btn,
+    [data-osp-continue-button] {
+      font-family: 'DM Sans', sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 0.9rem !important;
+      border-radius: 8px !important;
+    }
+
+    .btn--primary,
+    .step__footer__continue-btn {
+      background: var(--co-accent) !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      box-shadow: 0 4px 14px rgba(0,196,180,0.3) !important;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease !important;
+    }
+
+    .btn--primary:hover,
+    .step__footer__continue-btn:hover {
+      background: var(--co-accent-hv) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 20px rgba(0,196,180,0.4) !important;
+    }
+
+    .btn--secondary,
+    .previous-link {
+      color: var(--co-text) !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 0.85rem !important;
+    }
+
+    .btn--secondary:hover,
+    .previous-link:hover { color: var(--co-accent) !important; }
+
+    /* Order summary */
+    .order-summary { font-family: 'DM Sans', sans-serif !important; }
+
+    .order-summary__toggle {
+      background: var(--co-bg-alt) !important;
+      border-bottom: 1px solid var(--co-border) !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 0.85rem !important;
+    }
+
+    .order-summary__toggle-icon { color: var(--co-accent) !important; }
+
+    .product-thumbnail {
+      border: 1px solid var(--co-border) !important;
+      border-radius: 8px !important;
+      box-shadow: none !important;
+    }
+
+    .product-thumbnail__quantity {
+      background: var(--co-accent) !important;
+      color: white !important;
+      font-family: 'DM Sans', sans-serif !important;
+      border-radius: 50% !important;
+      border: none !important;
+      font-weight: 700 !important;
+      min-width: 22px !important;
+      height: 22px !important;
+      font-size: 0.7rem !important;
+    }
+
+    .product__description__name {
+      font-family: 'DM Sans', sans-serif !important;
+      font-weight: 600 !important;
+      color: var(--co-text) !important;
+    }
+
+    .product__description__variant { color: var(--co-muted) !important; }
+
+    .order-summary__emphasis,
+    .total-line__price,
+    .payment-due__price {
+      font-family: 'Space Grotesk', sans-serif !important;
+      font-weight: 700 !important;
+      color: var(--co-text) !important;
+    }
+
+    .payment-due { border-top: 1px solid var(--co-border) !important; }
+    .payment-due__label { font-family: 'DM Sans', sans-serif !important; font-size: 0.85rem !important; font-weight: 600 !important; }
+    .payment-due__price { color: var(--co-text) !important; font-size: 1.4rem !important; }
+
+    .reduction-code__text { color: var(--co-success) !important; }
+
+    .reduction-code-input { border: 1px solid var(--co-border) !important; border-radius: 8px !important; }
+    .reduction-code-btn { border: 1px solid var(--co-border) !important; border-radius: 8px !important; background: var(--co-surface) !important; font-family: 'DM Sans', sans-serif !important; font-weight: 600 !important; }
+    .reduction-code-btn:hover { background: var(--co-bg) !important; }
+
+    .order-summary__section + .order-summary__section { border-top: 1px solid var(--co-border) !important; }
+
+    .radio-wrapper { border-radius: 8px !important; }
+    .payment-icon { border: 1px solid var(--co-border) !important; border-radius: 4px !important; }
+
+    .notice { border: 1px solid var(--co-border) !important; border-radius: 8px !important; background: var(--co-bg-alt) !important; }
+
+    /* Thank you page */
+    .os-header {
+      background: var(--co-surface) !important;
+      border-bottom: 1px solid var(--co-border) !important;
+    }
+
+    .os-header__hanging-icon {
+      background: var(--co-accent) !important;
+      border: none !important;
+      box-shadow: 0 4px 12px rgba(0,196,180,0.3) !important;
+      border-radius: 50% !important;
+    }
+
+    .os-header__title {
+      font-family: 'Space Grotesk', sans-serif !important;
+      font-weight: 700 !important;
+      color: var(--co-text) !important;
+    }
+
+    .os-order-number {
+      font-family: 'DM Sans', sans-serif !important;
+      color: var(--co-accent) !important;
+      font-weight: 600 !important;
+    }
+
+    .os-timeline-step__bubble {
+      border: 2px solid var(--co-border) !important;
+      border-radius: 50% !important;
+    }
+
+    .os-timeline-step__bubble--completed,
+    .os-timeline-step__bubble--current { background: var(--co-accent) !important; border-color: var(--co-accent) !important; }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--co-border) !important;
+      background: var(--co-surface) !important;
+      color: var(--co-muted) !important;
+    }
+
+    .footer a { color: var(--co-accent) !important; }
+    .footer a:hover { text-decoration: underline !important; }
+
+    @media (max-width: 749px) {
+      .main { border-right: none !important; }
+      .sidebar { border-left: none !important; border-top: 1px solid var(--co-border) !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="banner" role="banner">
+    <div class="wrap">
+      {%- if checkout.logo -%}
+        <a href="{{ shop.url }}" class="header__logo-link">
+          <img src="{{ checkout.logo }}" alt="{{ shop.name }}" class="header__logo-image">
+        </a>
+      {%- else -%}
+        <a href="{{ shop.url }}" class="header__logo-link">
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;color:var(--co-text);">{{ shop.name }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </header>
+
+  <main role="main">
+    {{ content_for_layout }}
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="wrap">
+      <p style="font-size:0.75rem;">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}
+        &nbsp;|&nbsp;
+        <a href="/policies/privacy-policy">Privacidad</a>
+        &nbsp;|&nbsp;
+        <a href="/policies/refund-policy">Devoluciones</a>
+        &nbsp;|&nbsp;
+        <a href="/policies/terms-of-service">Términos</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
